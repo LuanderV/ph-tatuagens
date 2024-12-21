@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { Navigation, Pagination } from 'swiper/modules';
+import Image from 'next/image';
 
 export function Carousel() {
   const tattooImages = [
@@ -32,14 +33,18 @@ export function Carousel() {
           640: { slidesPerView: 2 }, // Exibe 2 slides a partir de 640px
           1024: { slidesPerView: 3 }, // Exibe 3 slides a partir de 1024px
         }}
+        className="max-w-7xl mx-auto" // Centralizando o carrossel e limitando a largura
       >
         {tattooImages.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="p-4">
-              <img
+            <div className="p-4 transition-all transform hover:scale-105 hover:shadow-xl rounded-md">
+              <Image
                 src={image}
                 alt={`Tattoo ${index + 1}`}
+                width={500}
+                height={500}
                 className="w-full rounded-md shadow-lg"
+                priority // Carregar imagem de forma otimizada
               />
             </div>
           </SwiperSlide>
